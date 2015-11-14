@@ -21,7 +21,7 @@ public class Searches {
 		  zobristHash.clear();
 		  for (int depth = 1; ; ++depth) {
 			  
-			  System.err.println("Starting iterative deepening to depth "+depth);
+		//	  System.err.println("Starting iterative deepening to depth "+depth);
 
 			  CurrentBestMove temp = alphaBetaPruning(state, ef, myP, depth, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, true, timeUp, myHHTable); 
 			  
@@ -44,18 +44,18 @@ public class Searches {
 		CurrentBestMove bestMove = new CurrentBestMove();
 		if (depth == 0 || timeUp.get() || currentState.gameOver()) {
 			
-			if (depth==0){
-				System.err.println("depth==0");
-			}
-			if (timeUp.get()) {
-				System.err.println("timer is up");
-			}
-			if (currentState.gameOver()) {
-				System.err.println("game over");
-			}
-			
+//			if (depth==0){
+//				System.err.println("depth==0");
+//			}
+//			if (timeUp.get()) {
+//				System.err.println("timer is up");
+//			}
+//			if (currentState.gameOver()) {
+//				System.err.println("game over");
+//			}
+//			
 			  bestMove.score = ef.eval(currentState, myPlayer); //currentState.currentPlayer);
-			  System.err.println(bestMove.toString());
+			//  System.err.println(bestMove.toString());
 			  return bestMove;
 		}
 		
@@ -204,7 +204,7 @@ public class Searches {
 		  Move lastCompletedMove = new Move(-1,-1);
 		  
 		  for (int depth = 1; ; ++depth) {
-			  System.err.println("Starting iterative deepening to depth "+depth); 
+	//		  System.err.println("Starting iterative deepening to depth "+depth); 
 			  Move temp = maxPlayer(state, ef, myPlayer, depth, timeUp, true).m;
 			  if (timeUp.get())
 			  {
@@ -231,23 +231,23 @@ public class Searches {
 			  currentState.applyMove(m);
 
 			  CurrentBestMove temp = minPlayer(currentState, ef, myPlayer, depth-1, timeUp);
-			  if (debug)
-			  {
-				  System.err.print(m+" score: "+Math.round(temp.score*100)/100+" ");
-			  }
+//			  if (debug)
+//			  {
+//				  System.err.print(m+" score: "+Math.round(temp.score*100)/100+" ");
+//			  }
 			  if (temp.score > bestMove.score) {
 				  bestMove.score = temp.score;
 				  bestMove.m = m;
-				  if (debug)
-					  System.err.print("(new best)");
+//				  if (debug)
+//					  System.err.print("(new best)");
 			  }
 			  
-			  if (debug) System.err.println("");
+		//	  if (debug) System.err.println("");
 			  
 			  currentState.undoMove(m);
 			  
 		  } //end of for 
-		  if (debug) System.err.println("Returning " + bestMove);
+	//	  if (debug) System.err.println("Returning " + bestMove);
 		  return bestMove;
 	 }
 
